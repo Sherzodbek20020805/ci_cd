@@ -1,0 +1,32 @@
+  name: Check
+  on:  push
+  jobs:
+    lint:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Install 
+          run: npm ci
+
+        - name: lint Check
+          run: npm run lint
+
+    test:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Install 
+          run: npm ci
+
+        - name: test Check
+          env:
+            PORT: ${{ secrets.PORT }}
+          run: npm run test
